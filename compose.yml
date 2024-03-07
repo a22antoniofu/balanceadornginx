@@ -3,7 +3,8 @@ services:
 
   web:
     image: nginx:latest
-    env_file: .env    
+    env_file: 
+      - .env    
     ports:
       - ${http_port}:80
       - ${https_port}:443
@@ -19,25 +20,16 @@ services:
 
   apache1:
     build: apache  
-    env_file: .env
     volumes:
       - ./apache/vhost.conf:/etc/apache2/sites-enabled/vhost.conf
       - ./html:/html
-    Environment:
-      - ServerName=${ServerName}
   apache2:
     build: apache  
-    env_file: .env
     volumes:
       - ./apache/vhost.conf:/etc/apache2/sites-enabled/vhost.conf
       - ./html:/html
-    Environment:
-      - ServerName=${ServerName}
   apache3:
     build: apache  
-    env_file: .env
     volumes:
       - ./apache/vhost.conf:/etc/apache2/sites-enabled/vhost.conf
       - ./html:/html            
-    Environment:
-      - ServerName=${ServerName}
