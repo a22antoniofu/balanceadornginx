@@ -11,13 +11,6 @@ services:
     volumes:
       - ./nginx/vhost.conf:/etc/nginx/conf.d/vhost.conf
       - ./certificados:/etc/nginx/certificados
-    environment:
-      - ServerName=${Servername}
-      - Certificado=${Certificado}
-      - Chave=${Chave}
-      - http_port=${http_port}
-      - https_port=${https_port}
-      
   apache1:
     build: apache  
     volumes:
