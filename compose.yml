@@ -11,7 +11,11 @@ services:
       - ./nginx/vhost.conf:/etc/nginx/conf.d/vhost.conf
       - ./certificados:/etc/nginx/certificados
     environment:
-      - ServerName=${server_name}
+      - ServerName=${ServerName}
+      - http_port=${http_port}
+      - https_port=${https_port}
+      - Certificado=${Certificado}
+      - Chave=${Chave}
 
   apache1:
     build: apache  
@@ -19,15 +23,21 @@ services:
     volumes:
       - ./apache/vhost.conf:/etc/apache2/sites-enabled/vhost.conf
       - ./html:/html
+    Environment:
+      - ServerName=${ServerName}
   apache2:
     build: apache  
     env_file: .env
     volumes:
       - ./apache/vhost.conf:/etc/apache2/sites-enabled/vhost.conf
       - ./html:/html
+    Environment:
+      - ServerName=${ServerName}
   apache3:
     build: apache  
     env_file: .env
     volumes:
       - ./apache/vhost.conf:/etc/apache2/sites-enabled/vhost.conf
       - ./html:/html            
+    Environment:
+      - ServerName=${ServerName}
