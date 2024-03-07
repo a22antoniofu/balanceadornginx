@@ -3,6 +3,7 @@ services:
 
   web:
     image: nginx:latest
+    env-file: .env
     ports:
       - ${http_port}:80
       - ${https_port}:443
