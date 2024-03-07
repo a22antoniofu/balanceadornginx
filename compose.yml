@@ -3,11 +3,11 @@ services:
 
   web:
     image: nginx:latest
-    env_file: 
-      - .env    
     ports:
       - ${http_port}:80
       - ${https_port}:443
+    env_file: 
+      - .env    
     volumes:
       - ./nginx/vhost.conf:/etc/nginx/conf.d/vhost.conf
       - ./certificados:/etc/nginx/certificados
