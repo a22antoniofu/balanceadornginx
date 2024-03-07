@@ -6,6 +6,12 @@ services:
     ports:
       - ${http_port}:80
       - ${https_port}:443
+    environment:
+      - certificado=${certificado}
+      - chave=${chave}
+      - http_port=${http_port}
+      - https_port=${https_port}
+      - server_name: ${server_name}
     env_file: 
       - .env    
     volumes:
@@ -13,6 +19,7 @@ services:
       - ./certificados:/etc/nginx/certificados
   apache1:
     build: apache  
+    
     volumes:
       - ./apache/vhost.conf:/etc/apache2/sites-enabled/vhost.conf
       - ./html:/html
