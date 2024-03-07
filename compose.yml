@@ -10,6 +10,8 @@ services:
     volumes:
       - ./nginx/vhost.conf:/etc/nginx/conf.d/vhost.conf
       - ./certificados:/etc/nginx/certificados
+    environment:
+      - ServerName=${server_name}
 
   apache1:
     build: apache  
