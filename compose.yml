@@ -4,8 +4,8 @@ services:
   web:
     image: nginx:latest
     ports:
-      - 80:80
-      - 443:443
+      - ${http_port}:80
+      - ${https_port}:443
     volumes:
       - ./nginx/vhost.conf:/etc/nginx/conf.d/vhost.conf
 
